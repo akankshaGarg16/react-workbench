@@ -1,21 +1,16 @@
 import { useRef, useState } from "react";
 
 const Accordion = ({ categories }) => {
-  const [toggle, setToggle] = useState({
-    toggleValue: false,
-    clickedIndex: null,
-  });
-
-  const prevClickedValue = useRef(null);
+  const [clickedIndex, setClickedIndex] = useState(null);
 
   function handleClick(index) {
-    if (index === prevClickedValue.current) {
-        setToggle({ toggleValue: !toggle.toggleValue, clickedIndex: index });
-    } else {
-         setToggle({ toggleValue: toggle.toggleValue, clickedIndex: index });
-    }
-    
- prevClickedValue.current = index;
+    // if (index !== clickedIndex) {
+    //     setClickedIndex(index);
+    // } else {
+    //     setClickedIndex(null);
+    // }
+
+    setClickedIndex(index !== clickedIndex ? index : null);
   }
 
   return (
@@ -31,8 +26,7 @@ const Accordion = ({ categories }) => {
               >
                 {category.title}
               </div>
-              {
-              toggle.toggleValue && index === toggle?.clickedIndex ? (
+              {index === clickedIndex && (
                 <div className="bg-white text-slate-600 rounded-b-lg text-center">
                   <ul>
                     {category.items.map((item, index) => (
@@ -40,8 +34,7 @@ const Accordion = ({ categories }) => {
                     ))}
                   </ul>
                 </div>
-              ) : null
-              }
+              )}
             </div>
           </div>
         );
