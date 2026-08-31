@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.strikethrough-text {
+  text-decoration: line-through;
+}
