@@ -7,7 +7,6 @@ function App() {
   const [todoList, setTodoList] = useState([]);
 
   const addItem = () => {
-    // made mistake here, did input.trim, missed the paranthesis.
     if (input.trim() === "") return;
 
     const item = {
@@ -17,16 +16,13 @@ function App() {
     };
     setTodoList((prev) => [...prev, item]);
     setInput(""); // after adding the todo item, text field becomes blank again
+    document.getElementById("textInput").focus();
   };
 
   const toggleItem = (id) => {
     setTodoList(
       todoList.map((t) => {
         if (t.id === id) {
-          // made so many mistakes here, did return () and not {}, though its a single statement can send without ()
-          // 2. did completed = and not :
-          // 3. wasnt using return, was directly doing  t.completed: !t.completed, though we need to return an obj
-          // 4. didnt wrote return, though its very imp here
           return {
             ...t,
             completed: !t.completed,
@@ -54,6 +50,7 @@ function App() {
               value={input}
               onChange={(event) => setInput(event.target.value)}
               className="m-5 border-2 border-[#b7b1b1]"
+              id="textInput"
             />
             <button
               onClick={addItem}
