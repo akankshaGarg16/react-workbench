@@ -1,0 +1,6 @@
+- Prevent values from going below 0% or above 100% i.e. Progress must stay between 0 and 100.
+- Change bar color based on value (e.g., red, orange, green).
+- Color is selected based on thresholds:
+   - Red if less than 40%
+   - Orange if between 40-79%
+   - Green if 80% or more
